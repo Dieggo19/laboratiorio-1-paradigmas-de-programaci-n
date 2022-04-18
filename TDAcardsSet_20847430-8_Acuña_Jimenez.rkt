@@ -21,7 +21,19 @@
                         null]
                        [else (cons (list-ref lista iterador) (firstcarta lista (+ iterador 1)))]))) ;se utiliza list-ref para poder jugar con cualquier simbolo
 
+;ej (firstcarta lista 0)
+
 ;funcion que crea las primeras n cartas del mazo
+
+(define firstNcarta (lambda (lista i j) ; i j representan acumuladores
+                      (cond
+                        [(<= (simboloCarta (length lista)) i)
+                         null]
+                        [(cons (cons (list-ref lista 0) (firstNcarta lista i 2)) (firstNcarta lista (+ i 1)))]
+                        [(<= (simboloCarta (length lista)) j)
+                         [(cons (list-ref lista (- (+ (* (- (simboloCarta (length lista)) 1) i) j) 1)) (firstNcarta lista i (+ j 1)))]])))
+
+;funcion que crea las n^2 cartas del mazo
 
 
 ;PERTENENCIA
